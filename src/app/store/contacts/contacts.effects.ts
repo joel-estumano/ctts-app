@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { loadContacts, loadContactsError, loadContactsSuccess, updateActiveStatus, updateContactSuccess, updateFavoriteStatus } from './contacts.actions';
+import {
+	loadContactById,
+	loadContactByIdFailure,
+	loadContactByIdSuccess,
+	loadContacts,
+	loadContactsError,
+	loadContactsSuccess,
+	updateActiveStatus,
+	updateContactSuccess,
+	updateFavoriteStatus
+} from './contacts.actions';
 import { catchError, map, mergeMap, of } from 'rxjs';
 import { IContactData } from '../../interfaces';
 import { ContactService } from '../../modules/contact/services/contact.service';
@@ -48,4 +58,16 @@ export class ContactsEffects {
 			})
 		);
 	});
+
+	loadContactById$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(loadContactById),
+			mergeMap((action) =>
+				this.contactService.getContactById(action.id).pipe(
+					map((contact) => loadContactByIdSuccess({ contact })),
+					catchError((error) => of(loadContactByIdFailure({ error })))
+				)
+			)
+		)
+	);
 }

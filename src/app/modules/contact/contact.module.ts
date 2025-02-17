@@ -19,7 +19,7 @@ const routes: Routes = [
 		title: 'Novo contato'
 	},
 	{
-		path: 'editar',
+		path: 'editar/:id',
 		component: EditComponent,
 		title: 'Editar'
 	}

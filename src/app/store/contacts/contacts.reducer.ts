@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { loadContacts, loadContactsError, loadContactsSuccess, updateContactSuccess } from './contacts.actions';
+import { loadContactByIdSuccess, loadContacts, loadContactsError, loadContactsSuccess, updateContactSuccess } from './contacts.actions';
 import { IContactsStore } from '../../interfaces';
 
 export const initialState: IContactsStore = {
@@ -33,5 +33,9 @@ export const contactsReducer = createReducer(
 			result: updatedContacts,
 			error: null
 		};
-	})
+	}),
+	on(loadContactByIdSuccess, (state, { contact }) => ({
+		...state,
+		result: state.result.map((c) => (c.contatoId === contact.contatoId ? contact : c))
+	}))
 );

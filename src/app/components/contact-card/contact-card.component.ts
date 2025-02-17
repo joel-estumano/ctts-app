@@ -3,12 +3,13 @@ import { IContactData } from '../../interfaces';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { loadContactsError, updateActiveStatus, updateFavoriteStatus } from '../../store/contacts/contacts.actions';
+import { updateActiveStatus, updateFavoriteStatus } from '../../store/contacts/contacts.actions';
 import { getContactsError } from '../../store/contacts/contacts.selector';
+import { RouterLink } from '@angular/router';
 
 @Component({
 	selector: 'app-contact-card',
-	imports: [FormsModule, ReactiveFormsModule, NgClass],
+	imports: [FormsModule, ReactiveFormsModule, NgClass, RouterLink],
 	templateUrl: './contact-card.component.html',
 	styleUrl: './contact-card.component.scss'
 })

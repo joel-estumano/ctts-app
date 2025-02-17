@@ -3,6 +3,7 @@
 		<p class="f5">{{ data().nome }}</p>
 		<p class="text-sm font-semibold">Celular: {{ data().celular }}</p>
 		<p class="text-sm font-semibold">Telefone: {{ data().telefone }}</p>
+		<a [routerLink]="['/editar', data().contatoId]" title="Editar" class="absolute top-0 right-0">Editar</a>
 	</div>
 	<div class="grid grid-cols-1 gap-2">
 		<div class="flex items-center justify-between h-10 px-2 border border-light-gray rounded-2xl">
@@ -15,8 +16,8 @@
 		<div class="flex items-center justify-between h-10 px-2 border border-light-gray rounded-2xl">
 			<p>Favorito</p>
 			<label class="switch">
-				<input type="checkbox" [checked]="isFavorit()" (change)="updateFavoriteStatus()" />
-				<span class="slider round"></span>
+				<input type="checkbox" [checked]="isFavorit()" (change)="updateFavoriteStatus()" [disabled]="!isActive()" />
+				<span class="slider round" [ngClass]="{ 'opacity-10 !cursor-not-allowed': !isActive() }"></span>
 			</label>
 		</div>
 	</div>

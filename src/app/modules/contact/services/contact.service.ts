@@ -17,7 +17,11 @@ export class ContactService {
 		return this.httpService.post('contatos', data);
 	}
 
-	list(search: string = ''): Observable<IContactData[]> {
+	edit(data: IContactAdd, id: string): Observable<void> {
+		return this.httpService.patch(`contatos/${id}`, data);
+	}
+
+	list(search: string): Observable<IContactData[]> {
 		const userId = this.authService.getUserDecode()?.id;
 		return this.httpService.get<IContactData[]>(`contatos/${userId}?search=${search}`);
 	}
@@ -28,5 +32,9 @@ export class ContactService {
 
 	updateFavoriteStatus(contactId: string, isFavorite: boolean): Observable<void> {
 		return this.httpService.patch<{ snFavorito: 'S' | 'N' }, void>(`contatos/${contactId}/favorito`, { snFavorito: isFavorite ? 'S' : 'N' });
+	}
+
+	getContactById(id: string): Observable<IContactData> {
+		return this.httpService.get<IContactData>(`contatos/${id}`);
 	}
 }

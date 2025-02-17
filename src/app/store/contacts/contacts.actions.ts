@@ -10,3 +10,7 @@ export const updateActiveStatus = createAction('[Contacts] Update Active Status'
 export const updateFavoriteStatus = createAction('[Contacts] Update Favorite Status', props<{ contactId: string; isFavorite: boolean }>());
 
 export const updateContactSuccess = createAction('[Contacts] Update Contact Success', props<{ contactId: string; changes: Partial<IContactData> }>());
+
+export const loadContactById = createAction('[Contacts] Load Contact By ID', props<{ id: string }>());
+export const loadContactByIdSuccess = createAction('[Contacts] Load Contact By ID Success', props<{ contact: IContactData }>());
+export const loadContactByIdFailure = createAction('[Contacts] Load Contact By ID Failure', props<{ error: HttpErrorResponse }>());
