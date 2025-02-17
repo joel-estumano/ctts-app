@@ -1,0 +1,10 @@
+<div class="fixed z-[1080] top-4 flex flex-col gap-4 right-4 overflow-y-auto h-screen hide-scrollbar">
+	@for (alert of alerts; track $index) {
+		<div class="fade-in alert" [ngClass]="alert.type === 'erro' ? 'alert-erro' : 'alert-info'">
+			<span>{{ alert.message }}</span>
+			<button class="btn-x-close" title="Fechar" (click)="removeAlert($index)">
+				<app-icon [icon]="'heroXMark'" class="text-lg"></app-icon>
+			</button>
+		</div>
+	}
+</div>

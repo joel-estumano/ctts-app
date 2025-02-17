@@ -1,0 +1,11 @@
+<app-section>
+	<h1 class="text-center f2">Contatos</h1>
+	<input type="search" id="search" [formControl]="searchControl" placeholder="Nome" />
+	<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+		@if (contactsStore$ | async; as contactsStore) {
+			@for (contact of contactsStore.result; track contact.contatoId) {
+				<app-contact-card [contact]="contact" />
+			}
+		}
+	</div>
+</app-section>
